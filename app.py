@@ -14,6 +14,8 @@ def index():
 # Route to register
 @app.route('/register')
 def register():
+
+    # TODO: Use WTF-Form
     # TODO: Username unique and min 4 char, password should match with confirm e min char=4, mail should be a mail. Search form validator for flask.
     # TODO: display clear message for validation, disply message if registration successful
     # TODO: hash password before saving on database
