@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Index
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+        <h1> Coronavirus Tracker</h1>
+        
+        <!-- TODO: Change with live update-->
+        <p> Coronavirus Cases: 185,455,633</p>
+        <p>Deaths: 4,010,632</p>
+        <p>Recovered: 169,789,073 </p>
+    </div>
+    <div class="container">
+        <a href="/by_country" class="btn btn-primary">Data by country</a>
+        <a href="/vaccination" class="btn btn-primary">Vaccination Data</a>
+    </div>
+    <div class="container mt-4">
+        <a href="/register" class="btn btn-primary">Register</a>
+        <a href="/login" class="btn btn-primary">Log In</a>
+    </div>
+
+
+    
+{% endblock %}
