@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect
+from forms import RegistrationForm, LoginForm
+
 
 # Initializing app
 app = Flask(__name__)
@@ -12,26 +14,53 @@ def index():
 
 
 # Route to register
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+
+    # Instance form
+    form = RegistrationForm(request.form)
+
+    # Validation
+    if request.method == 'POST' and form.validate():
+
+        # Grab user data
+        user = form.username.data
+        email = form.email.data
+        psw = form.password.data
+
+        # grab all users from db, check if user exist
+        print(user, email, psw)
 
     # TODO: Use WTF-Form
     # TODO: Username unique and min 4 char, password should match with confirm e min char=4, mail should be a mail. Search form validator for flask.
     # TODO: display clear message for validation, disply message if registration successful
     # TODO: hash password before saving on database
     # TODO: store form in database
-    return render_template('register.html')
+    return render_template('register.html', form=form)
 
 
 # Route to login
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    # Instance Form
+    form = LoginForm(request.form)
+
+    # Validation
+    if request.method == 'POST' and form.validate():
+
+        # Grab user data
+        user = form.username.data
+        psw = form.password.data
+
+        # debug
+        print(user, psw)
     # TODO: check if data are in database,
     # TODO: dehash password for chacking without storing the value in a var,
     # TODO: redirect to dashbord if login is successful and message the user,
     # TODO: dipslay a message if error occure
     # TODO: open session
-    return render_template('login.html')
+    return render_template('login.html', form=form)
 
 
 # Route to logout

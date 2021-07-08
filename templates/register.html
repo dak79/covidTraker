@@ -8,10 +8,19 @@
 
 {% block body %}
 
-Username
-Password
-confirm Password
-email
-SUBMIT
+    {% from "includes/_formrender.html" import render_field %}
+    <div class="container">
+        <form method="POST" action="/register">
+            <div class="form-group">
+                <dl>
+                    {{ render_field(form.username, class_="form-control mb-2", placeholder="Username")}}
+                    {{ render_field(form.email, class_="form-control mb-2", placeholder="Email")}}
+                    {{ render_field(form.password, class_="form-control mb-2", placeholder="Password")}}
+                    {{ render_field(form.confirm, class_="form-control", placeholder="Confirm")}}
+                    {{ render_field(form.submit, class_="form-control btn btn-primary mt-5")}}
+                </dl>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}
