@@ -28,12 +28,13 @@ def register():
         email = form.email.data
         psw = form.password.data
 
-        # grab all users from db, check if user exist
+        # Debug
         print(user, email, psw)
 
-    # TODO: Use WTF-Form
-    # TODO: Username unique and min 4 char, password should match with confirm e min char=4, mail should be a mail. Search form validator for flask.
-    # TODO: display clear message for validation, disply message if registration successful
+        # grab all users from db, check if user exist
+
+    # TODO: grab all users from db, check if user exist. User shoul be unique
+    # TODO: disply message if registration successful
     # TODO: hash password before saving on database
     # TODO: store form in database
     return render_template('register.html', form=form)
@@ -59,7 +60,7 @@ def login():
     # TODO: dehash password for chacking without storing the value in a var,
     # TODO: redirect to dashbord if login is successful and message the user,
     # TODO: dipslay a message if error occure
-    # TODO: open session
+    # TODO: Session
     return render_template('login.html', form=form)
 
 
