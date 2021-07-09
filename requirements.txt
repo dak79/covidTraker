@@ -3,3 +3,4 @@ Flask-WTF
 wtforms
 email_validator
 flask-sqlalchemy
+Flask-Session

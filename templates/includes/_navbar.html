@@ -25,17 +25,23 @@
                 <a class="nav-link" href="/vaccination">Vaccination Data</a>
         </ul>
 
-        <!-- Right navbar. TODO: dispaly item according to session status-->
+        <!-- Right navbar -->
         <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/register">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Log In</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Log Out</a>
-            </li>
+            {% if session['logged_in'] %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log Out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+            {% endif %}
         </ul> 
     </div>
   </div>

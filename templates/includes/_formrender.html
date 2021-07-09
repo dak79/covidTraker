@@ -7,7 +7,7 @@
         {% if field.errors %}
             <ul class="list-group list-group-flush">
                 {% for error in field.errors %}
-                    <li class="list-group-item text-danger">{{ error }}</li>
+                    <div class="text-danger">{{ error }}</div>
                 {% endfor %}
             </ul>
         {% endif %} 
