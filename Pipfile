@@ -11,7 +11,7 @@ email-validator = "*"
 flask-sqlalchemy = "*"
 flask-session = "*"
 requests = "*"
-
+requests-cache = "*"
 
 [dev-packages]
 autopep8 = "*"

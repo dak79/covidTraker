@@ -6,6 +6,7 @@ import os
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
 import requests
+import requests_cache
 
 
 # Initializing app
@@ -17,6 +18,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+# Cache API answer for 10 minuts
+requests_cache.install_cache(
+    'covid_cache', backend='sqlite', expire_after=600)
 
 # Inizialize db
 db = SQLAlchemy(app)
@@ -49,7 +54,7 @@ app.jinja_env.filters["mil"] = mil
 
 
 # Route to homepage
-@app.route('/')
+@ app.route('/')
 def index():
 
     # Get global cases from API
