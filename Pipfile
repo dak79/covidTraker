@@ -10,6 +10,8 @@ wtforms = "*"
 email-validator = "*"
 flask-sqlalchemy = "*"
 flask-session = "*"
+requests = "*"
+
 
 [dev-packages]
 autopep8 = "*"

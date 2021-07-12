@@ -9,14 +9,57 @@
 {% block body %}
 
 <div class="container">
-        <h1> Coronavirus Tracker</h1>
-        
-        <!-- TODO: Change with live update-->
-        <p> Coronavirus Cases: 185,455,633</p>
-        <p>Deaths: 4,010,632</p>
-        <p>Recovered: 169,789,073 </p>
+    <h1 class="text-center"> Coronavirus Tracker</h1>
+</div>
+    <div class="container">
+        <h2 class="text-center mt-4">Covid-19 Data</h2>
+        <table class="table text-center">
+            <thead>
+                <th>World Population</th>
+                <th>Confirmed</th>
+                <th>%</th>
+                <th>Recovered</th>
+                <th>%</th>
+                <th>Death</th>
+                <th>%</th>
+            </thead>
+            <tbody>
+                {% for case, location in global_cases.items() %}
+                    <td>{{ location["population"] | mil }}</td>
+                    <td>{{ location["confirmed"] | mil }}</td>
+                    <td>{{ "%.3f" | format((location["confirmed"] / location["population"]) * 100) }}</td>
+                    <td>{{ location["recovered"] | mil }}</td>
+                    <td>{{ "%.3f" | format((location["recovered"] / location["population"]) * 100) }}</td>
+                    <td>{{ location["deaths"] | mil }}</td>
+                    <td>{{ "%.3f" | format((location["deaths"] / location["population"]) * 100) }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     <div class="container">
+        <h2 class="text-center mt-4">Vaccination Data</h2>
+        <table class="table text-center">
+            <thead>
+                <th>Population</th>
+                <th>Vaccine Administrated</th>
+                <th>People Vaccinated</th>
+                <th>%</th>
+                <th>People Partially Vaccinated</th>
+                <th>%</th>
+            </thead>
+            <tbody>
+                {% for vaccinated, location in global_vaccination.items() %}
+                    <td>{{ location["population"] | mil }}</td>
+                    <td>{{ location["administered"] | mil }}</td>
+                    <td>{{ location["people_vaccinated"] | mil }}</td>
+                    <td>{{ "%.3f" | format((location["people_vaccinated"] / location["population"]) * 100) }}</td>
+                    <td>{{ location["people_partially_vaccinated"] | mil }}</td>
+                    <td>{{ "%.3f" | format((location["people_partially_vaccinated"] / location["population"]) * 100) }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-4">
         <a href="/by_country" class="btn btn-primary">Data by country</a>
         <a href="/vaccination" class="btn btn-primary">Vaccination Data</a>
     </div>

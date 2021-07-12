@@ -5,6 +5,8 @@ from flask_session import Session
 import os
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
+import requests
+
 
 # Initializing app
 app = Flask(__name__)
@@ -15,7 +17,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-
 
 # Inizialize db
 db = SQLAlchemy(app)
@@ -38,15 +39,32 @@ class Users(db.Model):
         self.password = password
 
 
+def mil(value):
+    """Format milion human readable."""
+    return f"{value:,}"
+
+
+# Custom filter
+app.jinja_env.filters["mil"] = mil
+
+
 # Route to homepage
 @app.route('/')
 def index():
-    # TODO: display dinamic world data from api, manage buttons, manage dynamic navbar
-    return render_template('index.html')
+
+    # Get global cases from API
+    global_cases = requests.get(
+        'https://covid-api.mmediagroup.fr/v1/cases?country=Global').json()
+
+    # Get vaccination from API
+    global_vaccination = requests.get(
+        'https://covid-api.mmediagroup.fr/v1/vaccines?country=Global').json()
+
+    return render_template('index.html', global_cases=global_cases, global_vaccination=global_vaccination)
 
 
 # Route to register
-@app.route('/register', methods=['GET', 'POST'])
+@ app.route('/register', methods=['GET', 'POST'])
 def register():
     ''' User registration '''
 
@@ -78,7 +96,7 @@ def register():
 
 
 # Route to login
-@app.route('/login', methods=['GET', 'POST'])
+@ app.route('/login', methods=['GET', 'POST'])
 def login():
     ''' User Log In '''
 
@@ -110,6 +128,7 @@ def login():
         session['user_id'] = access.id
         session['user'] = access.username
         session['logged_in'] = True
+        session['only_cached'] = False
 
         flash('You successfully logged in', 'success')
         return redirect('/dashboard')
@@ -121,7 +140,7 @@ def login():
 def login_required(f):
     ''' Decorate route where log in is required '''
 
-    @wraps(f)
+    @ wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get('user_id') is None:
             flash('Invalid access, log in', 'danger')
@@ -131,8 +150,8 @@ def login_required(f):
 
 
 # Route to logout
-@app.route('/logout')
-@login_required
+@ app.route('/logout')
+@ login_required
 def logout():
     ''' User Log Out '''
 
@@ -143,15 +162,15 @@ def logout():
 
 
 # Route to dashboard
-@app.route('/dashboard')
-@login_required
+@ app.route('/dashboard')
+@ login_required
 def dashboard():
     # TODO: only if logged in
     return render_template('dashboard.html')
 
 
 # Route to add country
-@app.route('/add_country')
+@ app.route('/add_country')
 def add_country():
 
     # TODO: show all country
@@ -160,13 +179,13 @@ def add_country():
 
 
 # Route to data by_country
-@app.route('/by_country')
+@ app.route('/by_country')
 def by_country():
     return render_template('by_country.html')
 
 
 # Route to vaccination data
-@app.route('/vaccination')
+@ app.route('/vaccination')
 def vaccination():
     return render_template('vaccination.html')
 
