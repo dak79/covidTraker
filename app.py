@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request, redirect, flash, session
 from forms import RegistrationForm, LoginForm
+from helpers import login_required, mil
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 import os
 from werkzeug.security import check_password_hash, generate_password_hash
-from functools import wraps
 import requests
 import requests_cache
 
 
 # Initializing app
 app = Flask(__name__)
+
 
 # Config
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covidtracker.db'
@@ -19,15 +20,8 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-# Cache API answer for 10 minuts
-requests_cache.install_cache(
-    'covid_cache', backend='sqlite', expire_after=600)
-
 # Inizialize db
 db = SQLAlchemy(app)
-
-# Inizialize Session
-Session(app)
 
 
 # Create database
@@ -44,9 +38,13 @@ class Users(db.Model):
         self.password = password
 
 
-def mil(value):
-    """Format milion human readable."""
-    return f"{value:,}"
+# Cache API answer for 10 minuts
+requests_cache.install_cache(
+    'covid_cache', backend='sqlite', expire_after=600)
+
+
+# Inizialize Session
+Session(app)
 
 
 # Custom filter
@@ -54,7 +52,7 @@ app.jinja_env.filters["mil"] = mil
 
 
 # Route to homepage
-@ app.route('/')
+@app.route('/')
 def index():
 
     # Get global cases from API
@@ -69,7 +67,7 @@ def index():
 
 
 # Route to register
-@ app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     ''' User registration '''
 
@@ -101,7 +99,7 @@ def register():
 
 
 # Route to login
-@ app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     ''' User Log In '''
 
@@ -141,22 +139,9 @@ def login():
     return render_template('login.html', form=form)
 
 
-# Protect pages where log in is required
-def login_required(f):
-    ''' Decorate route where log in is required '''
-
-    @ wraps(f)
-    def decorated_function(*args, **kwargs):
-        if session.get('user_id') is None:
-            flash('Invalid access, log in', 'danger')
-            return redirect('/login')
-        return f(*args, **kwargs)
-    return decorated_function
-
-
 # Route to logout
-@ app.route('/logout')
-@ login_required
+@app.route('/logout')
+@login_required
 def logout():
     ''' User Log Out '''
 
@@ -167,15 +152,20 @@ def logout():
 
 
 # Route to dashboard
-@ app.route('/dashboard')
-@ login_required
+@app.route('/dashboard')
+@login_required
 def dashboard():
     # TODO: only if logged in
+    # TODO: search a country and add to your dashboard
+    # TODO: refresh data when you login
+    # TODO: button refresh
+    # TODO: compute new cases?
+
     return render_template('dashboard.html')
 
 
 # Route to add country
-@ app.route('/add_country')
+@app.route('/add_country')
 def add_country():
 
     # TODO: show all country
@@ -184,15 +174,24 @@ def add_country():
 
 
 # Route to data by_country
-@ app.route('/by_country')
+@app.route('/by_country')
 def by_country():
-    return render_template('by_country.html')
+
+    # Get data from API
+    cases_by_country = requests.get(
+        'https://covid-api.mmediagroup.fr/v1/cases').json()
+
+    return render_template('by_country.html', cases_by_country=cases_by_country)
 
 
 # Route to vaccination data
-@ app.route('/vaccination')
+@app.route('/vaccination')
 def vaccination():
-    return render_template('vaccination.html')
+    # Get data from API
+    vaccination_by_country = requests.get(
+        'https://covid-api.mmediagroup.fr/v1/vaccines').json()
+
+    return render_template('vaccination.html', vaccination_by_country=vaccination_by_country)
 
 
 # Lunch app

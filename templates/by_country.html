@@ -9,7 +9,41 @@
 {% block body %}
 
     <!-- Connect with countries' data -->
-    <!-- Add a refresh button -->
-    COUNTRY DATA
+    
+    <div class="container">
+        <h1 class="text-center">Cases by country</h1>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead class="text-center">
+                <th>Country</th>
+                <th>Population</th>
+                <th>Confirmed</th>
+                <th>%</th>
+                <th>Recovered</th>
+                <th>%</th>
+                <th>Deaths</th>
+                <th>%</th>
+                <th>Updated</th>
+            </thead>
+            <tbody class="text-center">
+                {% for country, cases in cases_by_country.items() %}
+                    {% if cases["All"]["population"] and country != "Global" and cases["All"]["confirmed"] != 0 %}
+                        <tr>
+                            <td class="text-start">{{ country }}</td>
+                            <td>{{ cases["All"]["population"] | mil }}</td>
+                            <td>{{ cases["All"]["confirmed"] | mil }}</td>
+                            <td>{{ "%.2f" | format((cases["All"]["confirmed"] / cases["All"]["population"]) * 100) }}%</td>
+                            <td>{{ cases["All"]["recovered"] | mil }}</td>
+                            <td>{{ "%.2f" | format((cases["All"]["recovered"] / cases["All"]["confirmed"]) * 100) }}%</td>
+                            <td>{{ cases["All"]["deaths"] | mil }}</td>
+                            <td>{{ "%.2f" | format((cases["All"]["deaths"] / cases["All"]["confirmed"]) * 100) }}%</td>
+                            <td>{{ cases["All"]["updated"] | truncate(16, False, '')}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}
