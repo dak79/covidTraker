@@ -7,14 +7,111 @@
 {% endblock %}
 
 {% block body %}
+    <div class="container">
+        <h1 class="text-center">Welcome <small>{{ session['user'] }}</small></h1>
+    </div>
 
-    <!-- dinamically show username -->
-    <h1>Welcome <small>user</small></h1>
+    <div class="container text-center">
+        <a href="/add_country_cases" class="btn btn-primary mt-2">Follow Country - Cases</a>
+        <a href="/add_country_vaccination" class="btn btn-primary mt-2">Follow Country - Vaccination data</a>
+    </div>
     
-    <!-- show choosen data to follow, add the possibility to delete with trash icon -->
-    <p> In here data you are following</p>
+    {% if cases %}
+        <div class="container">
+            <h2 class="text-center mt-4">Covid-19 Cases</h2>
+        </div>
+        <div class="container mt-4">
+            <table class="table align-middle">
+                <thead class="text-center">
+                    <tr>
+                        <th>Country</th>
+                        <th>Population</th>
+                        <th>Confirmed</th>
+                        <th>%</th>
+                        <th>Recovered</th>
+                        <th>%</th>
+                        <th>Deaths</th>
+                        <th>%</th>
+                        <th>Updated</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% for case in cases %}
+                        <tr>
+                            <td>{{ case.country }}</td>
+                            <td>{{ case.population | mil }}</td>
+                            <td>{{ case.confirmed | mil }}</td>
+                            <td>{{ case.confirmed_percent }}</td>
+                            <td>{{ case.recovered | mil }}</td>
+                            <td>{{ case.recovered_percent }}</td>
+                            <td>{{ case.deaths | mil }}</td>
+                            <td>{{ case.deaths_percent }}</td>
+                            <td>{{ case.updated | truncate(16, False, '') }}</td>
+                            <td>
+                                <form action="/update_case/{{ case.id }}" method="POST">
+                                    <input type="submit" class="btn btn-secondary" value="Update">
+                                </form> 
+                            </td>
+                            <td>
+                                <form action="/delete_case/{{ case.id }}" method="POST">
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>  
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 
-    <!-- Button follow new local area-->
-    <a href="/add_country" class="btn btn-primary">Add country</a>
+    {% if vaccines %}
+        <div class="container">
+            <h2 class="text-center mt-4">Vaccination Data</h2>
+        </div>
+        <div class="container mt-4">
+            <table class="table align-middle">
+                <thead class="text-center">
+                    <tr>
+                        <th>Country</th>
+                        <th>Population</th>
+                        <th>Administered</th>
+                        <th>Totally Vaccinated</th>
+                        <th>%</th>
+                        <th>Partially Vaccinated</th>
+                        <th>%</th>
+                        <th>Updated</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% for vaccine in vaccines %}
+                        <tr>
+                            <td>{{ vaccine.country }}</td>
+                            <td>{{ vaccine.population | mil }}</td>
+                            <td>{{ vaccine.administered_vaccines | mil }}</td>
+                            <td>{{ vaccine.totally_vaccinated | mil }}</td>
+                            <td>{{ vaccine.totally_vaccinated_percent }}</td>
+                            <td>{{ vaccine.partially_vaccinated | mil }}</td>
+                            <td>{{ vaccine.partially_vaccinated_percent }}</td>
+                            <td>{{ vaccine.updated | truncate(16, False, '') }}</td>
+                            <td>
+                                <form action="/update_vaccine/{{ vaccine.id }}" method="POST">
+                                    <input type="submit" class="btn btn-secondary" value="Update">
+                                </form> 
+                            </td>
+                            <td>
+                                <form action="/delete_vaccine/{{ vaccine.id }}" method="POST">
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </form> 
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 
 {% endblock %}

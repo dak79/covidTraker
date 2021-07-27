@@ -9,19 +9,21 @@
 {% block body %}
 
     <div class="container">
-        <h1 class="text-center">Vaccination by country</h1>
+        <h1 class="text-center">Vaccination by Country</h1>
     </div>
     <div class="container">
-        <table class="table">
+        <table class="table align-middle">
             <thead class="text-center">
-                <th>Country</th>
-                <th>Population</th>
-                <th>Administered</th>
-                <th>Totally Vaccinated</th>
-                <th>%</th>
-                <th>Partialy Vaccinated</th>
-                <th>%</th>
-                <th>Updated</th>
+                <tr>
+                    <th>Country</th>
+                    <th>Population</th>
+                    <th>Administered</th>
+                    <th>Totally Vaccinated</th>
+                    <th>%</th>
+                    <th>Partialy Vaccinated</th>
+                    <th>%</th>
+                    <th>Updated</th>
+                </tr>
             </thead>
             <tbody class="text-center">
                 {% for country, vaccines in vaccination_by_country.items() %}

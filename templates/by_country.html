@@ -11,20 +11,22 @@
     <!-- Connect with countries' data -->
     
     <div class="container">
-        <h1 class="text-center">Cases by country</h1>
+        <h1 class="text-center">Cases by Country</h1>
     </div>
     <div class="container">
-        <table class="table">
+        <table class="table align-middle">
             <thead class="text-center">
-                <th>Country</th>
-                <th>Population</th>
-                <th>Confirmed</th>
-                <th>%</th>
-                <th>Recovered</th>
-                <th>%</th>
-                <th>Deaths</th>
-                <th>%</th>
-                <th>Updated</th>
+                <tr>
+                    <th>Country</th>
+                    <th>Population</th>
+                    <th>Confirmed</th>
+                    <th>%</th>
+                    <th>Recovered</th>
+                    <th>%</th>
+                    <th>Deaths</th>
+                    <th>%</th>
+                    <th>Updated</th>
+                </tr>
             </thead>
             <tbody class="text-center">
                 {% for country, cases in cases_by_country.items() %}
