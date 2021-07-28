@@ -1,0 +1,64 @@
+/* ########## INDEX ##########
+ *
+ * 1. STYLE SETTINGS
+ *    - 1.1 Reset
+ *    - 1.2 Color Palette
+ *    - 1.3 Fonts
+ *    - 1.4 Background
+ *    - 1.5 Menu style
+ *    - 1.6 Homepage style
+ *    - 1.7 Contact style
+ *
+ * 2. LAYOUT SETTINGS
+ *    - 2.1 General
+ *    - 2.2 Menu layout
+ *    - 2.3 Homepage layout
+ *    - 2.4 About Me layout
+ *    - 2.5 Education layout
+ *    - 2.6 Work layout
+ *    - 2.7 Contact layout
+ *
+ *############################ */
+
+/* #### 1. STYLE SETTINGS #### */
+
+/* 1.1 Reset */
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 1.2 Color Palette */
+:root {
+  /* Danger messages and delete buttons (MESSAGES - BUTTON) */
+  --danger1: #EE3F3F;
+  --danger2: #F26764;
+
+  /* Success messages (MESSAGES) */
+  --success1: #7D9B5D;
+  --success2: #77B868;
+  --success3: #659E56;
+
+  /* Background (BACKGROUND) */
+  --background1: #F6F6F6;
+  --backfround2: #FFFFF0;
+  --background3: #F8F8FA;
+
+  /* Table background (TABLE) */
+  --tableBack1: #F8F8FA;
+  --tableBack2: #EEEEEE;
+  --tableBack3: #DDDDDD;
+  --tableBack4: #BBBBBB;
+
+  /* Font (TEXT - TABLE) (TITLE - TITLE TABLE ?) */
+  --font1: #1E1E1E;
+  --font2: #111111;
+  --font3: #000000;
+
+  /* Primary Color (TABLE - BUTTON - NAVBAR - FORM) (TITLE - TITLE TABLE?) */
+  --primary1: #F2C894;
+  --primary2: #FCB347;
+  --primary3: #FB985A;
+}
+
