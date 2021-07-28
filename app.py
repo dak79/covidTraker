@@ -207,7 +207,6 @@ def update_case(id):
     return redirect('/dashboard')
 
 
-# Route to delete case from dashboard
 @app.route('/delete_case/<id>', methods=['POST'])
 @login_required
 def delete_case(id):
@@ -256,7 +255,6 @@ def add_country_vaccination():
     return render_template('add_country_vaccination.html', form=form)
 
 
-# Route to update vaccine in dashboard
 @app.route('/update_vaccine/<id>', methods=['POST'])
 @login_required
 def update_vaccine(id):
@@ -282,7 +280,6 @@ def update_vaccine(id):
     return redirect('/dashboard')
 
 
-# Route to delete vaccine from dashboard
 @app.route('/delete_vaccine/<id>', methods=['POST'])
 @login_required
 def delete_vaccine(id):
