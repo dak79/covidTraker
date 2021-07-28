@@ -6,14 +6,12 @@
 
 {% endblock %}
 
-{% block body %}
+{% block main %}
 
-    <!-- Connect with countries' data -->
-    
-    <div class="container">
+    <header class="container">
         <h1 class="text-center">Cases by Country</h1>
-    </div>
-    <div class="container">
+    </header>
+    <section class="container">
         <table class="table align-middle">
             <thead class="text-center">
                 <tr>
@@ -46,6 +44,6 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+    </section>
 
 {% endblock %}

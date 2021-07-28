@@ -6,12 +6,12 @@
 
 {% endblock %}
 
-{% block body %}
+{% block main %}
 
-<div class="container">
-    <h1 class="text-center"> Coronavirus Tracker</h1>
-</div>
-   <div class="container">
+    <header class="container">
+        <h1 class="text-center"> Coronavirus Tracker</h1>
+    </header>
+    <section class="container">
         <h2 class="text-center mt-4">Covid-19 Data</h2>
         <table class="table text-center">
             <thead>
@@ -39,8 +39,8 @@
                     {% endfor %}
             </tbody>
         </table>
-    </div>
-    <div class="container">
+    </section>
+    <section class="container">
         <h2 class="text-center mt-4">Vaccination Data</h2>
         <table class="table text-center">
             <thead>
@@ -66,15 +66,15 @@
                     {% endfor %}
             </tbody>
         </table>
-    </div>
-    <div class="container mt-4">
+    </section>
+    <section class="container mt-4">
         <a href="/by_country" class="btn btn-primary">Data by country</a>
         <a href="/vaccination" class="btn btn-primary">Vaccination Data</a>
-    </div>
-    <div class="container mt-4">
+    </section>
+    <section class="container mt-4">
         <a href="/register" class="btn btn-primary">Register</a>
         <a href="/login" class="btn btn-primary">Log In</a>
-    </div>
+    </section>
 
 
     

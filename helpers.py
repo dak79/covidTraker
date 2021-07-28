@@ -19,8 +19,8 @@ def login_required(f):
 
 # Custom filter
 def mil(value):
-    """Format milion human readable."""
-    return f"{value:,}"
+    '''Format milion human readable.'''
+    return f'{value:,}'
 
 
 # Cache API answer for 10 minuts
@@ -29,64 +29,86 @@ requests_cache.install_cache(
 
 
 # Requests data to API
-def vaccine_request():
-    search = requests.get(
-        'https://covid-api.mmediagroup.fr/v1/vaccines').json()
+def api_general_request(vaccines_or_cases, location):
+    ''' Data from API, arguments: 'vaccines' or 'cases', '?country=' + Contry name'''
+    base_url = 'https://covid-api.mmediagroup.fr/v1/'
+    url = ''.join([base_url, str(vaccines_or_cases), str(location)])
+    search = requests.get(url).json()
     return search
 
 
-def vaccine_request_menu():
-    menu = []
-    search = requests.get(
-        'https://covid-api.mmediagroup.fr/v1/vaccines').json()
-    for country, data in search.items():
-        menu.append(country)
-    return menu
+def country_cases(cases):
+    '''Grab and prepare data for cases database'''
+    try:
+        country = cases['All']['country']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_cases')
+    try:
+        population = cases['All']['population']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_cases')
+    try:
+        confirmed = cases['All']['confirmed']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_cases')
+    confirmed_percent = round(((confirmed / population) * 100), 2)
+    try:
+        recovered = cases['All']['recovered']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_cases')
+    recovered_percent = round(((recovered / confirmed) * 100), 2)
+    try:
+        deaths = cases['All']['deaths']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_cases')
+    deaths_percent = round(((deaths / confirmed) * 100), 2)
+    try:
+        updated = cases['All']['updated']
+    except KeyError:
+        updated = ''
+
+    return country, population, confirmed, confirmed_percent, recovered, recovered_percent, deaths, deaths_percent, updated
 
 
-def vaccine_request_specific(location):
-    base_url = 'https://covid-api.mmediagroup.fr/v1/vaccines?country='
-    url = ''.join([base_url, str(location)])
-    search_vaccine_location = requests.get(url).json()
-    return search_vaccine_location
+def country_vaccines(vaccination):
+    '''Grab and prepare data for vaccines database'''
+    try:
+        country = vaccination['All']['country']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_vaccination')
+    try:
+        population = vaccination['All']['population']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_vaccination')
+    try:
+        administered_vaccines = vaccination['All']['administered']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_vaccination')
+    try:
+        totally_vaccinated = vaccination['All']['people_vaccinated']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_vaccination')
+    totally_vaccinated_percent = round(
+        ((totally_vaccinated / population) * 100), 2)
+    try:
+        partially_vaccinated = vaccination['All']['people_partially_vaccinated']
+    except KeyError:
+        flash('No data available', 'danger')
+        return redirect('/add_country_vaccination')
+    partially_vaccinated_percent = round(
+        ((partially_vaccinated / population) * 100), 2)
+    try:
+        updated = vaccination['All']['updated']
+    except KeyError:
+        updated = ''
 
-
-def cases_request():
-    search = requests.get(
-        'https://covid-api.mmediagroup.fr/v1/cases').json()
-    return search
-
-
-def cases_request_menu():
-    menu = []
-    search = requests.get(
-        'https://covid-api.mmediagroup.fr/v1/cases').json()
-    for country, data in search.items():
-        menu.append(country)
-    return menu
-
-
-def cases_request_specific(location):
-    base_url = 'https://covid-api.mmediagroup.fr/v1/cases?country='
-    url = ''.join([base_url, str(location)])
-    search_vaccine_location = requests.get(url).json()
-    return search_vaccine_location
-
- # Get global cases from API
-   # global_cases = requests.get(
-    #    'https://covid-api.mmediagroup.fr/v1/cases?country=Global').json()
-
-    # Get vaccination from API
-    # global_vaccination = requests.get(
-    #   'https://covid-api.mmediagroup.fr/v1/vaccines?country=Global').json()
-
-
-# Cases for selected country
-    #base_url_cases = 'https://covid-api.mmediagroup.fr/v1/cases?country='
-    #url_cases = ''.join([base_url_cases, selected_country])
-    #cases = requests.get(url_cases).json()
-
- # Vaccination for selected country
-    #base_url_vaccination = 'https://covid-api.mmediagroup.fr/v1/vaccines?country='
-    #url_vaccination = ''.join([base_url_vaccination, selected_country])
-    #vaccination = requests.get(url_vaccination).json()
+    return country, population, administered_vaccines, totally_vaccinated, totally_vaccinated_percent, partially_vaccinated, partially_vaccinated_percent, updated

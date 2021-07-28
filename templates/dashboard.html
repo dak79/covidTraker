@@ -6,21 +6,21 @@
 
 {% endblock %}
 
-{% block body %}
-    <div class="container">
+{% block main %}
+    <header class="container">
         <h1 class="text-center">Welcome <small>{{ session['user'] }}</small></h1>
-    </div>
+    </header>
 
-    <div class="container text-center">
+    <section class="container text-center">
         <a href="/add_country_cases" class="btn btn-primary mt-2">Follow Country - Cases</a>
         <a href="/add_country_vaccination" class="btn btn-primary mt-2">Follow Country - Vaccination data</a>
-    </div>
+    </section>
     
     {% if cases %}
-        <div class="container">
+        <section class="container">
             <h2 class="text-center mt-4">Covid-19 Cases</h2>
-        </div>
-        <div class="container mt-4">
+        </section>
+        <section class="container mt-4">
             <table class="table align-middle">
                 <thead class="text-center">
                     <tr>
@@ -63,14 +63,14 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
+        </section>
     {% endif %}
 
     {% if vaccines %}
-        <div class="container">
+        <section class="container">
             <h2 class="text-center mt-4">Vaccination Data</h2>
-        </div>
-        <div class="container mt-4">
+        </section>
+        <section class="container mt-4">
             <table class="table align-middle">
                 <thead class="text-center">
                     <tr>
@@ -111,7 +111,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
+        </section>
     {% endif %}
 
 {% endblock %}

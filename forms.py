@@ -1,7 +1,7 @@
 from wtforms import Form, StringField, PasswordField, SubmitField, SelectField, validators, ValidationError
 from wtforms.fields.html5 import EmailField
 import email_validator
-from helpers import vaccine_request_menu, cases_request_menu
+from helpers import api_general_request
 
 
 # Registration Form
@@ -25,8 +25,8 @@ class LoginForm(Form):
     submit = SubmitField('Log In')
 
 
-# Search country
-result_cases = cases_request_menu()
+# Search cases per Country form
+result_cases = api_general_request('cases', '')
 
 
 class CountryCases(Form):
@@ -35,7 +35,8 @@ class CountryCases(Form):
     submit = SubmitField('Add Country')
 
 
-result_vaccines = vaccine_request_menu()
+# Search vaccination per Country from
+result_vaccines = api_general_request('vaccines', '')
 
 
 class CountryVaccines(Form):

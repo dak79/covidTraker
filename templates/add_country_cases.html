@@ -6,10 +6,10 @@
 
 {% endblock %}
 
-{% block body %}
+{% block main %}
 
     {% from "includes/_formrender.html" import render_field %}
-    <div class="container">
+    <section class="container">
         <form method="POST" action="/add_country_cases">
             <div class="form-group">
                 <dl>
@@ -17,5 +17,7 @@
                     {{ render_field(form.submit, class_="form-control btn btn-primary mt-5")}}
                 </dl>
             </div>
+        </form>
+    </section>
     
 {% endblock %}
