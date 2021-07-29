@@ -1,46 +1,37 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-
-        <!-- Virus Icons-->
-        <i class="fas fa-virus"></i>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <!-- Navbar left -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<header class="header">
+    <nav class="navbar" role="navigation">
+        <p class="nav-logo"><i class="fas fa-virus"></i> CovidTracker</p>
+        <ul class="nav-menu">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/by_country">Data by Country</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/vaccination">Vaccination Data</a>
-        </ul>
-
-        <!-- Right navbar -->
-        <ul class="navbar-nav navbar-right">
-            {% if session['logged_in'] %}
+                {% if session['logged_in'] %}
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Log Out</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
-            {% else %}
+                {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/register">Register</a>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Log In</a>
                 </li>
-            {% endif %}
-        </ul> 
-    </div>
-  </div>
-</nav>
+                {% endif %}
+            </div>
+            </ul>
+            <button class="hamburger">
+                <span class="hamburger-open"><i class="fas fa-bars"></i></span>
+                <span class="hamburger-close"><i class="fas fa-times"></i></span>
+                <span class="hamburger-name">Menu</span>  
+            </button>
+    </nav>
+</header>
+        
