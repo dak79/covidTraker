@@ -1,0 +1,190 @@
+/* ########## INDEX ##########
+ *
+ * 1. Reset
+ * 2. Color Palette
+ * 3. Fonts
+ * 4. General Settigs
+ * 5. Background
+ * 6. NavBar
+ * 7. Table 
+ *    - 1.7 Contact style
+ *
+ * 2. LAYOUT SETTINGS
+ *    - 2.1 General
+ *    - 2.2 Menu layout
+ *    - 2.3 Homepage layout
+ *    - 2.4 About Me layout
+ *    - 2.5 Education layout
+ *    - 2.6 Work layout
+ *    - 2.7 Contact layout
+ *
+ *############################ */
+
+/* 1. Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+} 
+
+/* 2. Color Palette */
+:root {
+  /* Danger messages and delete buttons (MESSAGES - BUTTON) */
+  --danger1: #EE3F3F;
+  --danger2: #F26764;
+
+  /* Success messages (MESSAGES) */
+  --success1: #7D9B5D;
+  --success2: #77B868;
+  --success3: #659E56;
+
+  /* Background (BACKGROUND) */
+  --background1: #F6F6F6;
+  --backfround2: #FFFFF0;
+  --background3: #F8F8FA;
+
+  /* Table background (TABLE) */
+  --tableBack1: #F8F8FA;
+  --tableBack2: #EEEEEE;
+  --tableBack3: #DDDDDD;
+  --tableBack4: #BBBBBB;
+
+  /* Font (TEXT - TABLE) (TITLE - TITLE TABLE ?) */
+  --font1: #1E1E1E;
+  --font2: #111111;
+  --font3: #000000;
+  --font4: #F6F6F6;
+
+  /* Primary Color (TABLE - BUTTON - NAVBAR - FORM) (TITLE - TITLE TABLE?) */
+  --primary-light: #F2C894;
+  --primary2: #FCB347;
+  --primary-dark: #FB985A;
+}
+
+/* 3. Font */
+
+:root {
+  /*font-family: Arial, Helvetica, sans-serif; */
+  --header1: 'Alegreya SC';
+  --header2: 'Work Sans';
+  --header3: 'Roboto';
+  --header4: 'Raleway';
+  --header5: 'Merriweather Sans';
+  --body1: 'Alegreya';
+  --body2: 'Work Sans';
+  --body3: 'Roboto';
+  --body4: 'Raleway';
+  --body5: 'Merriweather Sans';
+}
+
+/* 4. General Settigs*/
+
+header {
+  font-family: var(--header5), Arial, Helvetica, sans-serif; 
+}
+
+/* 5. Background */
+body {
+  background-color: var(--background1);
+}
+
+/* 6. NavBar */
+
+.header {
+  background-color: var(--primary-dark);
+  color: var(--font4);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  outline: none;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-item {
+  margin-left: 3rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--font4);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.nav-link:hover, .nav-link:focus {
+  color: var(--font1)
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburger-name {
+  color: transparent;
+  font-size: 0;
+  position: relative;
+  z-index: -99;
+}
+
+/* For tablet and mobile */
+@media only screen and (max-width: 968px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--primary-dark);
+    border-radius: 0 0 0.5em 0.5em;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .nav-menu.active {
+    display: flex;
+    position: fixed;
+    top: 4rem;
+    left: 0;
+  }
+
+  .nav-item {
+    padding: 1rem;
+    margin: 0;
+  }
+ 
+  .hamburger {
+    display: flex;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background-color: var(--primary-dark);
+    color: var(--background1);
+    border: none;
+  }
+
+  .hamburger-close {
+    display: none;
+  }
+
+  .hamburger-close.active {
+    display: flex;
+  }
+
+  .hamburger-open.active{
+    display: none;
+  }
+}
+
+/* 7. Table */
