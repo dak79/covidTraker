@@ -7,8 +7,8 @@
 {% endblock %}
 
 {% block main %}
-    <header class="container">
-        <h1 class="text-center">Welcome <small>{{ session['user'] }}</small></h1>
+    <header>
+        <h1>Welcome <small>{{ session['user'] }}</small></h1>
     </header>
 
     <section class="container text-center">
@@ -17,12 +17,10 @@
     </section>
     
     {% if cases %}
-        <section class="container">
-            <h2 class="text-center mt-4">Covid-19 Cases</h2>
-        </section>
-        <section class="container mt-4">
-            <table class="table align-middle">
-                <thead class="text-center">
+        <section class="table-container">
+            <table class="cases">
+                <caption>Covid-19 Cases</caption>
+                <thead>
                     <tr>
                         <th>Country</th>
                         <th>Population</th>
@@ -37,7 +35,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     {% for case in cases %}
                         <tr>
                             <td>{{ case.country }}</td>
@@ -67,12 +65,10 @@
     {% endif %}
 
     {% if vaccines %}
-        <section class="container">
-            <h2 class="text-center mt-4">Vaccination Data</h2>
-        </section>
-        <section class="container mt-4">
-            <table class="table align-middle">
-                <thead class="text-center">
+        <section class="table-container">
+            <table class="vaccines">
+                <caption>Vaccination Data</caption>
+                <thead>
                     <tr>
                         <th>Country</th>
                         <th>Population</th>
@@ -86,7 +82,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     {% for vaccine in vaccines %}
                         <tr>
                             <td>{{ vaccine.country }}</td>

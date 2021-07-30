@@ -7,13 +7,10 @@
 {% endblock %}
 
 {% block main %}
-
-    <header class="container">
-        <h1 class="text-center">Vaccination by Country</h1>
-    </header>
-    <section class="container">
-        <table class="table align-middle">
-            <thead class="text-center">
+    <section class="table-container">
+        <table class="vaccines">
+            <caption>Vaccination by Country</caption>
+            <thead>
                 <tr>
                     <th>Country</th>
                     <th>Population</th>
@@ -25,11 +22,11 @@
                     <th>Updated</th>
                 </tr>
             </thead>
-            <tbody class="text-center">
+            <tbody>
                 {% for country, vaccines in vaccination_by_country.items() %}
                     {% if vaccines["All"]["population"] and country != "Global" %}
                         <tr>
-                            <td class="text-start"> {{ country }} </td>
+                            <td class="table-first-column"> {{ country }} </td>
                             <td> {{ (vaccines["All"]["population"]) | mil }} </td>
                             <td>{{ vaccines["All"]["administered"] | mil }}</td>
                             <td>{{ vaccines["All"]["people_vaccinated"] | mil }}</td>

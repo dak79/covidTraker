@@ -7,13 +7,10 @@
 {% endblock %}
 
 {% block main %}
-
-    <header class="container">
-        <h1 class="text-center">Cases by Country</h1>
-    </header>
-    <section class="container">
-        <table class="table align-middle">
-            <thead class="text-center">
+    <section class="table-container">
+        <table class="cases">
+            <caption>Cases by Country</caption>
+            <thead>
                 <tr>
                     <th>Country</th>
                     <th>Population</th>
@@ -26,12 +23,12 @@
                     <th>Updated</th>
                 </tr>
             </thead>
-            <tbody class="text-center">
+            <tbody>
                 {% for country, cases in cases_by_country.items() %}
                     {% if cases["All"]["population"] and country != "Global" and cases["All"]["confirmed"] != 0 %}
                         <tr>
-                            <td class="text-start">{{ country }}</td>
-                            <td>{{ cases["All"]["population"] | mil }}</td>
+                            <td class="table-first-column">{{ country }}</td>
+                            <td class="number">{{ cases["All"]["population"] | mil }}</td>
                             <td>{{ cases["All"]["confirmed"] | mil }}</td>
                             <td>{{ "%.2f" | format((cases["All"]["confirmed"] / cases["All"]["population"]) * 100) }}%</td>
                             <td>{{ cases["All"]["recovered"] | mil }}</td>

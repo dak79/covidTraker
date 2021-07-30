@@ -28,6 +28,8 @@
   outline: none;
 } 
 
+
+
 /* 2. Color Palette */
 :root {
   /* Danger messages and delete buttons (MESSAGES - BUTTON) */
@@ -80,7 +82,7 @@
 
 /* 4. General Settigs*/
 
-header {
+header, table {
   font-family: var(--header5), Arial, Helvetica, sans-serif; 
 }
 
@@ -90,7 +92,6 @@ body {
 }
 
 /* 6. NavBar */
-
 .header {
   background-color: var(--primary-dark);
   color: var(--font4);
@@ -143,7 +144,8 @@ body {
 }
 
 /* For tablet and mobile */
-@media only screen and (max-width: 968px) {
+@media only screen and (max-width: 989px) {
+  
   .nav-menu {
     display: none;
     flex-direction: column;
@@ -151,6 +153,7 @@ body {
     border-radius: 0 0 0.5em 0.5em;
     text-align: center;
     width: 100%;
+    z-index: 2;
   }
   
   .nav-menu.active {
@@ -185,26 +188,130 @@ body {
   .hamburger-open.active{
     display: none;
   }
-<<<<<<< Updated upstream
-=======
+
 }
 
 /* 7. Table */
+.table-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 table {
-  margin: 1rem 0;
+  margin: 1rem;
   border-collapse: collapse;
-  border: 0.1em solid var(--primary-dark)
+  font-size: 1rem;
+  text-align: center;
+  vertical-align: middle;
 }
 
 caption {
+  padding: 0.5em;
+  background-color: var(--primary-dark);
+  color: var(--background1);
+  font-size: 1.2rem;
+  border-bottom: 0.2em solid var(--primary-light)
+}
+
+thead {
+  border: 0.2em solid var(--primary-dark);
+}
+
+tbody {
+  border: 0.2em solid var(--primary-light);
+}
+
+.table-first-column {
   text-align: start;
-  padding: 0.25em 0.5em 0.5em 0.5em;
 }
 
 th, td {
-  padding: 0.25em 0.5em 0.5em 0.5em;
-  vertical-align: text-top;
-  text-align: left;
-  text-indent: -0.5em;
->>>>>>> Stashed changes
+  padding: 0.5em;
+}
+
+th {
+  vertical-align: bottom;
+  background-color: var(--primary-dark);
+  color: var(--background1);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+tr:nth-child(even) {
+  background-color: var(--primary-light);
+}
+
+tr:nth-child(odd) {
+  background-color: var(--background1);
+}
+
+@media 
+only screen and (max-width: 989px) {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+  caption {
+    display: flex;
+    text-align: center;
+  }
+
+	/* Hide table headers */
+	thead tr { 
+		color: transparent;
+    font-size: 0;
+    position: relative;
+    z-index: -99;
+	}
+  
+  .table-first-column {
+  text-align: end;
+}
+
+	/* Behave  like a "row" */
+	td { 
+		border: none;
+		position: relative;
+		padding-left: 50%;
+    text-align: end;
+    z-index: 1;
+    width: 80vw;
+	}
+	
+	td:before { 
+		position: absolute;
+		text-align: start;
+		top: 0.5em;
+		left: 0.5em;
+		width: 45%; 
+		padding-right: 0.5em; 
+		white-space: nowrap;
+    z-index: 1;
+	}
+	
+	/* Label the data: Cases */
+	table.cases td:nth-of-type(1):before { content: "Country"; }
+	table.cases td:nth-of-type(2):before { content: "Population"; }
+	table.cases td:nth-of-type(3):before { content: "Confirmed"; }
+	table.cases td:nth-of-type(4):before { content: "%"; }
+	table.cases td:nth-of-type(5):before { content: "Recovered"; }
+	table.cases td:nth-of-type(6):before { content: "%"; }
+	table.cases td:nth-of-type(7):before { content: "Deaths"; }
+	table.cases td:nth-of-type(8):before { content: "%"; }
+	table.cases td:nth-of-type(9):before { content: "Updated"; }
+
+  /* Label the data: Vaccines */
+  table.vaccines td:nth-of-type(1):before { content: "Country"; }
+	table.vaccines td:nth-of-type(2):before { content: "Population"; }
+	table.vaccines td:nth-of-type(3):before { content: "Administered"; }
+	table.vaccines td:nth-of-type(4):before { content: "Totally Vaccinated"; }
+	table.vaccines td:nth-of-type(5):before { content: "%"; }
+	table.vaccines td:nth-of-type(6):before { content: "Partially Vaccinated"; }
+	table.vaccines td:nth-of-type(7):before { content: "%"; }
+	table.vaccines td:nth-of-type(8):before { content: "Updated"; }
 }
