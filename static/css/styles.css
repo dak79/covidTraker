@@ -185,4 +185,26 @@ body {
   .hamburger-open.active{
     display: none;
   }
+<<<<<<< Updated upstream
+=======
+}
+
+/* 7. Table */
+table {
+  margin: 1rem 0;
+  border-collapse: collapse;
+  border: 0.1em solid var(--primary-dark)
+}
+
+caption {
+  text-align: start;
+  padding: 0.25em 0.5em 0.5em 0.5em;
+}
+
+th, td {
+  padding: 0.25em 0.5em 0.5em 0.5em;
+  vertical-align: text-top;
+  text-align: left;
+  text-indent: -0.5em;
+>>>>>>> Stashed changes
 }
