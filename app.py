@@ -35,6 +35,7 @@ def index():
 
     global_cases = api_general_request('cases', '?country=Global')
     global_vaccination = api_general_request('vaccines', '?country=Global')
+    print(global_cases)
 
     return render_template('index.html', global_cases=global_cases, global_vaccination=global_vaccination)
 

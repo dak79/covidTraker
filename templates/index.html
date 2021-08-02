@@ -7,21 +7,18 @@
 {% endblock %}
 
 {% block main %}
-    <header>
-        <h1>Global Data</h1>
-    </header>
     <section class="table-container">
-        <table>
-            <caption>Covid-19 Cases</caption>
+        <table class="global-cases">
+            <caption>Covid-19: Global Cases</caption>
             <thead>
                 <tr>
-                    <th>World Population</th>
-                    <th>Confirmed</th>
-                    <th>% of Population</th>
-                    <th>Recovered</th>
-                    <th>%</th>
-                    <th>Death</th>
-                    <th>%</th>
+                    <th scope="col">World Population</th>
+                    <th scope="col">Confirmed</th>
+                    <th scope="col">%</th>
+                    <th scope="col">Recovered</th>
+                    <th scope="col">%</th>
+                    <th scope="col">Death</th>
+                    <th scope="col">%</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,28 +26,27 @@
                 <tr>
                     <td>{{ location["population"] | mil }}</td>
                     <td>{{ location["confirmed"] | mil }}</td>
-                    <td>{{ "%.3f" | format((location["confirmed"] / location["population"]) * 100) }}%</td>
+                    <td>{{ "%.2f" | format((location["confirmed"] / location["population"]) * 100) }}%</td>
                     <td>{{ location["recovered"] | mil }}</td>
-                    <td>{{ "%.3f" | format((location["recovered"] / location["confirmed"]) * 100) }}%</td>
+                    <td>{{ "%.2f" | format((location["recovered"] / location["confirmed"]) * 100) }}%</td>
                     <td>{{ location["deaths"] | mil }}</td>
-                    <td>{{ "%.3f" | format((location["deaths"] / location["confirmed"]) * 100) }}%</td>
+                    <td>{{ "%.2f" | format((location["deaths"] / location["confirmed"]) * 100) }}%</td>
                 </tr>
                     {% endfor %}
             </tbody>
         </table>
     </section>
     <section class="table-container">
-        <table>
-            <caption>Vaccination</caption>
-
+        <table class="global-vaccines">
+            <caption>Covid-19: Global Vaccination Data</caption>
             <thead>
                 <tr>
-                    <th>World Population</th>
-                    <th>Vaccine Administrated</th>
-                    <th>People Vaccinated</th>
-                    <th>%</th>
-                    <th>People Partially Vaccinated</th>
-                    <th>%</th>
+                    <th scope="col">World Population</th>
+                    <th scope="col">Administrated</th>
+                    <th scope="col">Totally Vaccinated</th>
+                    <th scope="col">%</th>
+                    <th scope="col">Partially Vaccinated</th>
+                    <th scope="col">%</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,9 +55,9 @@
                     <td>{{ location["population"] | mil }}</td>
                     <td>{{ location["administered"] | mil }}</td>    
                     <td>{{ location["people_vaccinated"] | mil }}</td>
-                    <td>{{ "%.3f" | format((location["people_vaccinated"] / location["population"]) * 100) }}%</td>
+                    <td>{{ "%.2f" | format((location["people_vaccinated"] / location["population"]) * 100) }}%</td>
                     <td>{{ location["people_partially_vaccinated"] | mil }}</td>
-                    <td>{{ "%.3f" | format((location["people_partially_vaccinated"] / location["population"]) * 100) }}%</td>
+                    <td>{{ "%.2f" | format((location["people_partially_vaccinated"] / location["population"]) * 100) }}%</td>
                 </tr>
                     {% endfor %}
             </tbody>

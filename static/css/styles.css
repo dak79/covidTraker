@@ -3,11 +3,10 @@
  * 1. Reset
  * 2. Color Palette
  * 3. Fonts
- * 4. General Settigs
- * 5. Background
- * 6. NavBar
- * 7. Table 
- *    - 1.7 Contact style
+ * 4. Background
+ * 5. NavBar
+ * 6. Tables 
+ * 7. Form
  *
  * 2. LAYOUT SETTINGS
  *    - 2.1 General
@@ -28,8 +27,6 @@
   outline: none;
 } 
 
-
-
 /* 2. Color Palette */
 :root {
   /* Danger messages and delete buttons (MESSAGES - BUTTON) */
@@ -42,59 +39,34 @@
   --success3: #659E56;
 
   /* Background (BACKGROUND) */
-  --background1: #F6F6F6;
-  --backfround2: #FFFFF0;
-  --background3: #F8F8FA;
+  --background: #FFFFFF;
+  
+  /* Font (TEXT - TABLE) */
+  --font-black: #000000;
+  --font-white: #FFFFFF;
 
-  /* Table background (TABLE) */
-  --tableBack1: #F8F8FA;
-  --tableBack2: #EEEEEE;
-  --tableBack3: #DDDDDD;
-  --tableBack4: #BBBBBB;
-
-  /* Font (TEXT - TABLE) (TITLE - TITLE TABLE ?) */
-  --font1: #1E1E1E;
-  --font2: #111111;
-  --font3: #000000;
-  --font4: #F6F6F6;
-
-  /* Primary Color (TABLE - BUTTON - NAVBAR - FORM) (TITLE - TITLE TABLE?) */
+  /* Primary Color (TABLE - BUTTON - NAVBAR - FORM) */
   --primary-light: #F2C894;
-  --primary2: #FCB347;
+  --primary-medium: #FCB347;
   --primary-dark: #FB985A;
 }
 
 /* 3. Font */
-
 :root {
-  /*font-family: Arial, Helvetica, sans-serif; */
-  --header1: 'Alegreya SC';
-  --header2: 'Work Sans';
-  --header3: 'Roboto';
-  --header4: 'Raleway';
-  --header5: 'Merriweather Sans';
-  --body1: 'Alegreya';
-  --body2: 'Work Sans';
-  --body3: 'Roboto';
-  --body4: 'Raleway';
-  --body5: 'Merriweather Sans';
+  --font-family: 'Merriweather Sans';
 }
 
-/* 4. General Settigs*/
 
-header, table {
-  font-family: var(--header5), Arial, Helvetica, sans-serif; 
-}
-
-/* 5. Background */
+/* 4. Background */
 body {
-  background-color: var(--background1);
+  background-color: var(--background);
+  font-family: var(--font-family), Arial, Helvetica, sans-serif; 
 }
 
-/* 6. NavBar */
+/* 5. NavBar */
 .header {
   background-color: var(--primary-dark);
-  color: var(--font4);
+  color: var(--font-white);
 }
 
 .navbar {
@@ -118,13 +90,13 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: var(--font4);
+  color: var(--font-white);
   font-size: 1.2rem;
   font-weight: 400;
 }
 
 .nav-link:hover, .nav-link:focus {
-  color: var(--font1)
+  color: var(--font-black)
 }
 
 .nav-logo {
@@ -173,7 +145,7 @@ body {
     cursor: pointer;
     font-size: 1.5rem;
     background-color: var(--primary-dark);
-    color: var(--background1);
+    color: var(--background);
     border: none;
   }
 
@@ -191,7 +163,7 @@ body {
 
 }
 
-/* 7. Table */
+/* 6. Tables */
 .table-container {
   margin: 1rem;
   display: flex;
@@ -210,7 +182,7 @@ table {
 caption {
   padding: 0.5em;
   background-color: var(--primary-dark);
-  color: var(--background1);
+  color: var(--background);
   font-size: 1.2rem;
   border-bottom: 0.2em solid var(--primary-light)
 }
@@ -234,7 +206,7 @@ th, td {
 th {
   vertical-align: bottom;
   background-color: var(--primary-dark);
-  color: var(--background1);
+  color: var(--background);
   position: sticky;
   position: -webkit-sticky;
   top: 0;
@@ -245,9 +217,33 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-  background-color: var(--background1);
+  background-color: var(--background);
 }
 
+/* Sorting */
+.table-sortable th {
+  cursor: pointer;
+}
+
+.table-sortable .th-sort-asc::after {
+  content: "\25b2";
+}
+
+.table-sortable .th-sort-desc::after {
+  content: "\25bc";
+}
+
+.table-sortable .th-sort-asc::after,
+.table-sortable .th-sort-desc::after {
+  margin-left: 5px;
+}
+
+.table-sortable .th-sort-asc,
+.table-sortable .th-sort-desc {
+  color: rgba(0, 0, 0, 1);
+}
+
+/* For tablet and mobile */
 @media 
 only screen and (max-width: 989px) {
 
@@ -294,24 +290,18 @@ only screen and (max-width: 989px) {
     z-index: 1;
 	}
 	
-	/* Label the data: Cases */
-	table.cases td:nth-of-type(1):before { content: "Country"; }
-	table.cases td:nth-of-type(2):before { content: "Population"; }
-	table.cases td:nth-of-type(3):before { content: "Confirmed"; }
-	table.cases td:nth-of-type(4):before { content: "%"; }
-	table.cases td:nth-of-type(5):before { content: "Recovered"; }
-	table.cases td:nth-of-type(6):before { content: "%"; }
-	table.cases td:nth-of-type(7):before { content: "Deaths"; }
-	table.cases td:nth-of-type(8):before { content: "%"; }
-	table.cases td:nth-of-type(9):before { content: "Updated"; }
-
-  /* Label the data: Vaccines */
-  table.vaccines td:nth-of-type(1):before { content: "Country"; }
-	table.vaccines td:nth-of-type(2):before { content: "Population"; }
-	table.vaccines td:nth-of-type(3):before { content: "Administered"; }
-	table.vaccines td:nth-of-type(4):before { content: "Totally Vaccinated"; }
-	table.vaccines td:nth-of-type(5):before { content: "%"; }
-	table.vaccines td:nth-of-type(6):before { content: "Partially Vaccinated"; }
-	table.vaccines td:nth-of-type(7):before { content: "%"; }
-	table.vaccines td:nth-of-type(8):before { content: "Updated"; }
+	/* Label the data */
+	table.cases td:nth-of-type(1):before, table.vaccines td:nth-of-type(1):before { content: "Country"; }
+	table.cases td:nth-of-type(2):before, table.vaccines td:nth-of-type(2):before { content: "Population"; }
+	table.cases td:nth-of-type(3):before, table.global-cases td:nth-of-type(2):before { content: "Confirmed"; }
+	table.cases td:nth-of-type(4):before, table.cases td:nth-of-type(6):before, table.cases td:nth-of-type(8):before, table.vaccines td:nth-of-type(5):before, table.vaccines td:nth-of-type(7):before, table.global-cases td:nth-of-type(3):before, table.global-cases td:nth-of-type(5):before, table.global-cases td:nth-of-type(7):before, table.global-vaccines td:nth-of-type(4):before, table.global-vaccines td:nth-of-type(6):before { content: "%"; }
+	table.cases td:nth-of-type(5):before, table.global-cases td:nth-of-type(4):before { content: "Recovered"; }
+	table.cases td:nth-of-type(7):before, table.global-cases td:nth-of-type(6):before { content: "Deaths"; }
+	table.cases td:nth-of-type(9):before, table.vaccines td:nth-of-type(8):before { content: "Updated"; }
+	table.vaccines td:nth-of-type(3):before, table.global-vaccines td:nth-of-type(2):before { content: "Administered"; }
+	table.vaccines td:nth-of-type(4):before, table.global-vaccines td:nth-of-type(3):before { content: "Totally Vaccinated"; }
+	table.vaccines td:nth-of-type(6):before, table.global-vaccines td:nth-of-type(5):before { content: "Partially Vaccinated"; }
+  table.global-cases td:nth-of-type(1):before, table.global-vaccines td:nth-of-type(1):before { content: "World Population"; }
 }
+
+/* 7. Form */
