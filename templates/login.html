@@ -9,16 +9,13 @@
 {% block main %}
 
     {% from "includes/_formrender.html" import render_field %}
-    <section class="container">
         <form method="POST" action="/login">
-            <div class="form-group">
-                <dl>
-                    {{ render_field(form.username, class_="form-control mb-2", placeholder="Username")}}
-                    {{ render_field(form.password, class_="form-control mb-2", placeholder="Password")}}
-                    {{ render_field(form.submit, class_="form-control btn btn-primary mt-5")}}
-                </dl>
-            </div>
+            <section class="form-group">
+                <h1 class="form-hidden">Login</h1>
+                    {{ render_field(form.username, class_="form-control", placeholder="Username", autocomplete="off", autofocus=true)}}
+                    {{ render_field(form.password, class_="form-control", placeholder="Password", autocomplete="off")}}
+                    {{ render_field(form.submit, class_="form-control form-submit btn")}}
+            </section>
         </form>
-    </section>
-
+        
 {% endblock %}

@@ -8,12 +8,12 @@
 
 {% block main %}
     <header>
-        <h1>Welcome <small>{{ session['user'] }}</small></h1>
+        <h1>Welcome <span>{{ session['user'] }}</span></h1>
     </header>
 
-    <section class="container text-center">
-        <a href="/add_country_cases" class="btn btn-primary mt-2">Follow Country - Cases</a>
-        <a href="/add_country_vaccination" class="btn btn-primary mt-2">Follow Country - Vaccination data</a>
+    <section class="btn-container">
+        <a href="/add_country_cases" class="btn">Add Country Cases</a>
+        <a href="/add_country_vaccination" class="btn">Add Country Vaccines</a>
     </section>
     
     {% if cases %}
@@ -41,20 +41,20 @@
                             <td>{{ case.country }}</td>
                             <td>{{ case.population | mil }}</td>
                             <td>{{ case.confirmed | mil }}</td>
-                            <td>{{ case.confirmed_percent }}</td>
+                            <td>{{ case.confirmed_percent }}%</td>
                             <td>{{ case.recovered | mil }}</td>
-                            <td>{{ case.recovered_percent }}</td>
+                            <td>{{ case.recovered_percent }}%</td>
                             <td>{{ case.deaths | mil }}</td>
-                            <td>{{ case.deaths_percent }}</td>
+                            <td>{{ case.deaths_percent }}%</td>
                             <td>{{ case.updated | truncate(16, False, '') }}</td>
                             <td>
                                 <form action="/update_case/{{ case.id }}" method="POST">
-                                    <input type="submit" class="btn btn-secondary" value="Update">
+                                    <input type="submit" class="btn-update" value="Update">
                                 </form> 
                             </td>
                             <td>
                                 <form action="/delete_case/{{ case.id }}" method="POST">
-                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                    <input type="submit" class="btn-delete" value="Delete">
                                 </form>  
                             </td>
                         </tr>
@@ -89,18 +89,18 @@
                             <td>{{ vaccine.population | mil }}</td>
                             <td>{{ vaccine.administered_vaccines | mil }}</td>
                             <td>{{ vaccine.totally_vaccinated | mil }}</td>
-                            <td>{{ vaccine.totally_vaccinated_percent }}</td>
+                            <td>{{ vaccine.totally_vaccinated_percent }}%</td>
                             <td>{{ vaccine.partially_vaccinated | mil }}</td>
-                            <td>{{ vaccine.partially_vaccinated_percent }}</td>
+                            <td>{{ vaccine.partially_vaccinated_percent }}%</td>
                             <td>{{ vaccine.updated | truncate(16, False, '') }}</td>
                             <td>
                                 <form action="/update_vaccine/{{ vaccine.id }}" method="POST">
-                                    <input type="submit" class="btn btn-secondary" value="Update">
+                                    <input type="submit" class="btn-update" value="Update">
                                 </form> 
                             </td>
                             <td>
                                 <form action="/delete_vaccine/{{ vaccine.id }}" method="POST">
-                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                    <input type="submit" class="btn-delete" value="Delete">
                                 </form> 
                             </td>
                         </tr>

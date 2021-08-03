@@ -7,47 +7,37 @@
  * 5. NavBar
  * 6. Tables 
  * 7. Form
- *
- * 2. LAYOUT SETTINGS
- *    - 2.1 General
- *    - 2.2 Menu layout
- *    - 2.3 Homepage layout
- *    - 2.4 About Me layout
- *    - 2.5 Education layout
- *    - 2.6 Work layout
- *    - 2.7 Contact layout
+ * 8. Buttons
+ * 9. Messages
  *
  *############################ */
 
 /* 1. Reset */
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
   outline: none;
 } 
 
 /* 2. Color Palette */
 :root {
-  /* Danger messages and delete buttons (MESSAGES - BUTTON) */
-  --danger1: #EE3F3F;
-  --danger2: #F26764;
 
-  /* Success messages (MESSAGES) */
-  --success1: #7D9B5D;
-  --success2: #77B868;
-  --success3: #659E56;
+  /* Danger messages and delete buttons */
+  --danger: #F26764;
 
-  /* Background (BACKGROUND) */
+  /* Success messages */
+  --success: #659E56;
+
+  /* Background */
   --background: #FFFFFF;
   
-  /* Font (TEXT - TABLE) */
+  /* Font */
   --font-black: #000000;
   --font-white: #FFFFFF;
 
-  /* Primary Color (TABLE - BUTTON - NAVBAR - FORM) */
+  /* Primary Color */
   --primary-light: #F2C894;
-  --primary-medium: #FCB347;
   --primary-dark: #FB985A;
 }
 
@@ -63,6 +53,14 @@ body {
   font-family: var(--font-family), Arial, Helvetica, sans-serif; 
 }
 
+h1 {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+h1 span {
+  color: var(--primary-dark);
+}
 /* 5. NavBar */
 .header {
   background-color: var(--primary-dark);
@@ -75,6 +73,7 @@ body {
   align-items: center;
   padding: 1rem 1.5rem;
   outline: none;
+  margin-bottom: 2rem;
 }
 
 .nav-menu {
@@ -124,7 +123,7 @@ body {
     background-color: var(--primary-dark);
     border-radius: 0 0 0.5em 0.5em;
     text-align: center;
-    width: 100%;
+    width: 100vw;
     z-index: 2;
   }
   
@@ -244,8 +243,7 @@ tr:nth-child(odd) {
 }
 
 /* For tablet and mobile */
-@media 
-only screen and (max-width: 989px) {
+@media only screen and (max-width: 989px) {
 
 	/* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr { 
@@ -299,9 +297,153 @@ only screen and (max-width: 989px) {
 	table.cases td:nth-of-type(7):before, table.global-cases td:nth-of-type(6):before { content: "Deaths"; }
 	table.cases td:nth-of-type(9):before, table.vaccines td:nth-of-type(8):before { content: "Updated"; }
 	table.vaccines td:nth-of-type(3):before, table.global-vaccines td:nth-of-type(2):before { content: "Administered"; }
-	table.vaccines td:nth-of-type(4):before, table.global-vaccines td:nth-of-type(3):before { content: "Totally Vaccinated"; }
-	table.vaccines td:nth-of-type(6):before, table.global-vaccines td:nth-of-type(5):before { content: "Partially Vaccinated"; }
-  table.global-cases td:nth-of-type(1):before, table.global-vaccines td:nth-of-type(1):before { content: "World Population"; }
+	table.vaccines td:nth-of-type(4):before, table.global-vaccines td:nth-of-type(3):before { content: "Full Vaccinated"; }
+	table.vaccines td:nth-of-type(6):before, table.global-vaccines td:nth-of-type(5):before { content: "Partial Vaccinated"; }
+  table.global-cases td:nth-of-type(1):before, table.global-vaccines td:nth-of-type(1):before { content: "Population"; }
+}
+
+@media only screen and (max-width: 290px){
+  td {
+    font-size: 0.9rem;
+    }
 }
 
 /* 7. Form */
+.form-group {
+  display: flex;
+  height: 60vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.form-group h1 {
+  margin-top: -2rem;
+  margin-bottom: 2rem;
+  border-bottom: 6px solid var(--primary-dark);
+}
+
+.form-control {
+  margin-bottom: 1.5rem;;  
+  padding: 0.5rem;
+  border: 2px solid var(--primary-dark);
+}
+
+label {
+  padding: 0.5rem;
+}
+
+.form-control:focus {
+  background-color: var(--primary-light);
+}
+
+.form-submit:focus {
+  background-color: var(--primary-dark);
+}
+
+/* Small smartphone */
+@media only screen and (max-height: 570px) {
+  .form-group h1 {
+    margin-top: 7rem;
+    }
+}
+
+@media only screen and (max-height: 850px) {
+  .form-hidden {
+    visibility: hidden;
+    }
+}
+
+/* 8. Buttons */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  background-color: var(--primary-dark);
+  color: var(--font-white);
+  padding: 0.5rem;
+  margin: 2rem 0.5rem 1rem 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;  
+}
+
+.btn:focus, .btn-delete:focus, .btn-update:focus {
+  color: var(--font-black);
+}
+
+.btn-delete, .btn-update {
+  color: var(--font-white);
+  padding: 0.3rem;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-delete {
+  background-color: var(--danger);
+}
+
+.btn-update {
+  background-color: var(--primary-dark);
+}
+
+/* 9. Messages */
+.alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.alert-success {
+  color: var(--success);
+  border-bottom: 3px solid var(--success);
+  padding: 1.5rem;
+}
+
+.alert-danger {
+  color: var(--danger);
+  border-bottom: 3px solid var(--danger);
+  padding: 1.5rem;
+}
+
+.text-danger {
+  color: var(--danger);
+}
+
+/* Hiding Messages */
+.alert {
+  animation: message 0s ease-in 2s forwards;
+
+  /* Firefox */
+  -moz-animation: message 0s ease-in 2s forwards;
+  
+  /* Safari and Chrome */
+  -webkit-animation: message 0s ease-in 2s forwards;
+  
+  /* Opera */
+  -o-animation: message 0s ease-in 2s forwards;
+}
+
+@keyframes message {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+}
+
+@-webkit-keyframes message {
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}

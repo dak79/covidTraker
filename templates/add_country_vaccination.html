@@ -7,17 +7,12 @@
 {% endblock %}
 
 {% block main %}
-
     {% from "includes/_formrender.html" import render_field %}
-    <section class="container">
         <form method="POST" action="/add_country_vaccination">
-            <div class="form-group">
-                <dl>
-                    {{ render_field(form.country_list_vaccines, class_="form-control mb-2") }}
-                    {{ render_field(form.submit, class_="form-control btn btn-primary mt-5")}}
-                </dl>
-            </div>
-        </form>
-    </section>
+            <section class="form-group">
+                    {{ render_field(form.country_list_vaccines, class_="form-control") }}
+                    {{ render_field(form.submit, class_="form-control form-submit btn")}}
+            </section>
+        </form>  
 {% endblock %}
 
