@@ -35,7 +35,6 @@ def index():
 
     global_cases = api_general_request('cases', '?country=Global')
     global_vaccination = api_general_request('vaccines', '?country=Global')
-    print(global_cases)
 
     return render_template('index.html', global_cases=global_cases, global_vaccination=global_vaccination)
 
@@ -168,7 +167,8 @@ def add_country_cases():
         if check:
 
             # Check if the result is already in database
-            result = Cases.query.filter_by(country=data[0]).first()
+            result = Cases.query.filter_by(
+                user_id=user_id, country=data[0]).first()
             if result != None:
                 flash('You already follow this country', 'danger')
                 return redirect('/add_country_cases')
@@ -239,7 +239,8 @@ def add_country_vaccination():
         if check:
 
             # Check if country is already in database
-            result = Vaccines.query.filter_by(country=data[0]).first()
+            result = Vaccines.query.filter_by(
+                user_id=user_id, country=data[0]).first()
             if result != None:
                 flash('You already follow this country', 'danger')
                 return redirect('/add_country_vaccination')

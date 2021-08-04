@@ -44,18 +44,24 @@
 /* 3. Font */
 :root {
   --font-family: 'Merriweather Sans';
+  --font-size-large: 1.5rem;
+  --font-size-normal: 1.1rem;
+  --font-size-small: 1rem;
 }
 
 
 /* 4. Background */
 body {
+  color: var(--font-black);
   background-color: var(--background);
   font-family: var(--font-family), Arial, Helvetica, sans-serif; 
+
 }
 
 h1 {
   text-align: center;
-  margin-top: 1.5rem;
+  margin-top: 3rem;
+  color: var(--font-black);
 }
 
 h1 span {
@@ -90,8 +96,8 @@ h1 span {
 .nav-link {
   text-decoration: none;
   color: var(--font-white);
-  font-size: 1.2rem;
   font-weight: 400;
+  font-size: var(--font-size-normal);
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -99,8 +105,8 @@ h1 span {
 }
 
 .nav-logo {
-  font-size: 1.5rem;
   font-weight: 500;
+  font-size: var(--font-size-large);
 }
 
 .hamburger {
@@ -142,7 +148,7 @@ h1 span {
   .hamburger {
     display: flex;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: var(--font-size-large);
     background-color: var(--primary-dark);
     color: var(--background);
     border: none;
@@ -171,9 +177,9 @@ h1 span {
 }
 
 table {
-  margin: 1rem;
+  margin: 3rem 1rem 1rem 1rem;
   border-collapse: collapse;
-  font-size: 1rem;
+  font-size: var(--font-size-small);
   text-align: center;
   vertical-align: middle;
 }
@@ -182,16 +188,18 @@ caption {
   padding: 0.5em;
   background-color: var(--primary-dark);
   color: var(--background);
-  font-size: 1.2rem;
+  font-size: var(--font-size-large);
   border-bottom: 0.2em solid var(--primary-light)
 }
 
 thead {
-  border: 0.2em solid var(--primary-dark);
+  border: 0.2em solid var(--primary-dark); 
+  font-size: var(--font-size-normal);  
+  color: var(--background);
 }
 
 tbody {
-  border: 0.2em solid var(--primary-light);
+  border: 0.2em solid var(--primary-light); 
 }
 
 .table-first-column {
@@ -199,16 +207,11 @@ tbody {
 }
 
 th, td {
-  padding: 0.5em;
+  padding: 0.5em;  
 }
 
 th {
-  vertical-align: bottom;
   background-color: var(--primary-dark);
-  color: var(--background);
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
 }
 
 tr:nth-child(even) {
@@ -225,21 +228,22 @@ tr:nth-child(odd) {
 }
 
 .table-sortable .th-sort-asc::after {
-  content: "\25b2";
+  content: "\25b4";
 }
 
 .table-sortable .th-sort-desc::after {
-  content: "\25bc";
+  content: "\25be";
 }
 
 .table-sortable .th-sort-asc::after,
 .table-sortable .th-sort-desc::after {
-  margin-left: 5px;
+  margin-left: .3rem;
 }
 
 .table-sortable .th-sort-asc,
 .table-sortable .th-sort-desc {
-  color: rgba(0, 0, 0, 1);
+  color: var(--font-black);
+  
 }
 
 /* For tablet and mobile */
@@ -304,14 +308,14 @@ tr:nth-child(odd) {
 
 @media only screen and (max-width: 290px){
   td {
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     }
 }
 
 /* 7. Form */
 .form-group {
   display: flex;
-  height: 60vh;
+  height: 100vh;
   width: 100vw;
   justify-content: center;
   align-items: center;
@@ -319,9 +323,8 @@ tr:nth-child(odd) {
 }
 
 .form-group h1 {
-  margin-top: -2rem;
-  margin-bottom: 2rem;
   border-bottom: 6px solid var(--primary-dark);
+  margin-bottom: 2rem;
 }
 
 .form-control {
@@ -349,11 +352,6 @@ label {
     }
 }
 
-@media only screen and (max-height: 850px) {
-  .form-hidden {
-    visibility: hidden;
-    }
-}
 
 /* 8. Buttons */
 .btn-container {
@@ -397,7 +395,6 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
   font-weight: bold;
   font-size: 1.2rem;
 }
