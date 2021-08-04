@@ -1,5 +1,5 @@
 # COVID TRACKER
-#### Video Demo:  https://www.youtube.com/watch?v=3nHrg_8XfDw
+#### Video Demo:  https://www.youtube.com/channel/UC_c2eMREqXYhiACQr8Tkisg
 #### Description:
 Covid Tracker is a web app which keep track of Covid-19 data in the world and the data about vaccination against Corona Virus. The app is structured in two part: pubblic areas provides global data and data by Country, meanwhile the private ones it is a space where every user can follow their favorite Countries.
 
