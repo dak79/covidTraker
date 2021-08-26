@@ -73,7 +73,7 @@ def register():
 
         # Checking username already existing
         result = Users.query.filter_by(username=user).first()
-        if result != None:
+        if result is not None:
             flash('Username already exist', 'danger')
             return redirect('/register')
 
@@ -106,11 +106,11 @@ def login():
         access = Users.query.filter_by(username=user).first()
 
         # Check username
-        if access == None:
+        if access is None:
             flash('Username not found, please register', 'danger')
             return redirect('/register')
 
-        if access.password == None or not check_password_hash(access.password, psw):
+        if access.password is None or not check_password_hash(access.password, psw):
             flash('Incorrect password', 'danger')
             return redirect('/login')
 
@@ -169,7 +169,7 @@ def add_country_cases():
             # Check if the result is already in database
             result = Cases.query.filter_by(
                 user_id=user_id, country=data[0]).first()
-            if result != None:
+            if result is not None:
                 flash('You already follow this country', 'danger')
                 return redirect('/add_country_cases')
 
@@ -199,8 +199,10 @@ def update_case(id):
 
     if result:
         # Update database
-        Cases.query.filter_by(id=id).update(dict(country=data[0], population=data[1], confirmed=data[2], confirmed_percent=data[3],
-                                                 recovered=data[4], recovered_percent=data[5], deaths=data[6], deaths_percent=data[7], updated=data[8]))
+        Cases.query.filter_by(id=id).update(dict(
+                    country=data[0], population=data[1], confirmed=data[2],
+                    confirmed_percent=data[3], recovered=data[4], recovered_percent=data[5], deaths=data[6],
+                    deaths_percent=data[7], updated=data[8]))
         db.session.commit()
     else:
         flash('Update unavailable, try later', 'danger')
@@ -241,7 +243,7 @@ def add_country_vaccination():
             # Check if country is already in database
             result = Vaccines.query.filter_by(
                 user_id=user_id, country=data[0]).first()
-            if result != None:
+            if result is not None:
                 flash('You already follow this country', 'danger')
                 return redirect('/add_country_vaccination')
 
@@ -273,8 +275,10 @@ def update_vaccine(id):
 
     if result:
         # Update database
-        Vaccines.query.filter_by(id=id).update(dict(country=data[0], population=data[1], administered_vaccines=data[2], totally_vaccinated=data[3],
-                                                    totally_vaccinated_percent=data[4], partially_vaccinated=data[5], partially_vaccinated_percent=data[6], updated=data[7]))
+        Vaccines.query.filter_by(id=id).update(dict(
+            country=data[0], population=data[1], administered_vaccines=data[2], totally_vaccinated=data[3],
+            totally_vaccinated_percent=data[4], partially_vaccinated=data[5], partially_vaccinated_percent=data[6],
+            updated=data[7]))
         db.session.commit()
     else:
         flash('Update unavailable, try later', 'danger')

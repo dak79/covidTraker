@@ -1,6 +1,5 @@
-from wtforms import Form, StringField, PasswordField, SubmitField, SelectField, validators, ValidationError
+from wtforms import Form, StringField, PasswordField, SubmitField, SelectField, validators
 from wtforms.fields.html5 import EmailField
-import email_validator
 from helpers import api_general_request
 
 

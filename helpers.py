@@ -72,7 +72,8 @@ def country_cases(cases):
     except KeyError:
         updated = ''
 
-    return country, population, confirmed, confirmed_percent, recovered, recovered_percent, deaths, deaths_percent, updated
+    return country, population, confirmed, confirmed_percent, recovered, recovered_percent, deaths, deaths_percent,
+    updated
 
 
 def country_vaccines(vaccination):
@@ -111,4 +112,5 @@ def country_vaccines(vaccination):
     except KeyError:
         updated = ''
 
-    return country, population, administered_vaccines, totally_vaccinated, totally_vaccinated_percent, partially_vaccinated, partially_vaccinated_percent, updated
+    return country, population, administered_vaccines, totally_vaccinated, totally_vaccinated_percent,
+    partially_vaccinated, partially_vaccinated_percent, updated

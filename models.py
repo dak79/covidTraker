@@ -33,7 +33,10 @@ class Cases(db.Model):
     deaths_percent = db.Column(db.Float)
     updated = db.Column(db.Text)
 
-    def __init__(self, user_id, country, population, confirmed, confirmed_percent, recovered, recovered_percent, deaths, deaths_percent, updated):
+    def __init__(
+                    self, user_id, country, population, confirmed, confirmed_percent, recovered, recovered_percent,
+                    deaths, deaths_percent, updated
+                ):
         self.user_id = user_id
         self.country = country
         self.population = population
@@ -60,7 +63,10 @@ class Vaccines(db.Model):
     partially_vaccinated_percent = db.Column(db.Float)
     updated = db.Column(db.Text)
 
-    def __init__(self, user_id, country, population, administered_vaccines, totally_vaccinated, totally_vaccinated_percent, partially_vaccinated, partially_vaccinated_percent, updated):
+    def __init__(
+                    self, user_id, country, population, administered_vaccines, totally_vaccinated,
+                    totally_vaccinated_percent, partially_vaccinated, partially_vaccinated_percent, updated
+                ):
         self.user_id = user_id
         self.country = country
         self.population = population
